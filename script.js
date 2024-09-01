@@ -350,7 +350,7 @@ function reqTextBuilder(div, text){
 			//utilCreateSpan(div, text.substring(0, index));
 			//utilCreateSpan(div, gMedals[value]?.shortname + (gMedals[value]?.shortname? ': ' : '') + gMedals[value]?.name || "Unknown medal", 'medalReqHighlight');
 			//utilCreateSpan(div, text.substring(index2+1));
-			let name = gMedals[value]?.shortname + (gMedals[value]?.shortname? ': ' : '') + gMedals[value]?.name || "Unknown medal"
+			let name =  (gMedals[value]?.shortname? gMedals[value]?.shortname +': ' : '') + gMedals[value]?.name || "Unknown medal"
 			let nameText = "</span><span class='medalReqHighlight'>"
 				+ name+"</span><span>"
 			text = text.substring(0, index) 
