@@ -710,10 +710,10 @@ function initMedals(){
 				} },				], // (Special[8]==3 || special[13]==5)
 		reward: "-25% cooldown for most skills",
 	};
-	gMedals[45] = {
-		name: "National Defense Service Medal",
-	};
-	gMaxMedal=45;
+//	gMedals[45] = {
+//		name: "National Defense Service Medal",
+//	};
+	gMaxMedal=44;
 	
 	for(let i=2; i<=gMaxMedal; ++i) gMedals[i].index = i;
 	
@@ -725,9 +725,9 @@ function initMedals(){
 	
 	for(let i=26; i<=31; ++i) gMedals[i].group = "Oaks";
 	for(let i=21; i<=25; ++i) gMedals[i].group = "Valors";
-	for(let i=32; i<=45; ++i) gMedals[i].group = "Valors";
+	for(let i=32; i<=44; ++i) gMedals[i].group = "Valors";
 	for(let i=33; i<=38; ++i) gMedals[i].group = "Silver Valors";
-	for(let i=39; i<=45; ++i) gMedals[i].group = "Gold Valors";
+	for(let i=39; i<=44; ++i) gMedals[i].group = "Gold Valors";
 	// order
 	for(let i=0; i<=gMaxMedal; ++i) if(gMedals[i] && !gMedals[i].order) gMedals[i].order = i;
 }
