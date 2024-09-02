@@ -849,7 +849,7 @@ function render(){
 		let groupDiv = groups[medal.group].div;
 		let medalDiv = utilCreateDiv(groupDiv, '', 'medalDiv');
 //		let medalBtn = utilCreateBtn(medalDiv, ()=> btnMedalExpand(i), 'medalBtn' );
-		let medalLabel = utilCreateSpan(medalDiv, i + ' ' +(medal.shortname? medal.shortname + ': ' : '') +medal.name);
+		let medalLabel = utilCreateSpan(medalDiv, (medal.shortname? medal.shortname + ': ' : '') +medal.name);
 		medal.div = medalDiv;
 		medal.label = medalLabel;
 		
