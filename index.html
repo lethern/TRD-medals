@@ -13,7 +13,7 @@
 	padding: 6px 0;
 }
 .medalDiv{
-	padding-bottom: 4px;
+	padding-bottom: 10px;
 }
 .medalBtn{
 	color: blue;
@@ -21,12 +21,40 @@
 	padding: 0 4px 0 0;
 	cursor: pointer;
 }
+.medalContent{
+}
+.medalContentInline{
+	display: inline-block;
+	border: 1px solid black;
+}
 .medalReq{
-	//display: none;
+	display: inline-block;
+	width: 450px;
+	max-width: 450px;
+	vertical-align: top
+}
+.medalProgress{
+	display: inline-block;
+	width: 300px;
+	max-width: 300px;
+	vertical-align: top;
+	background-color: #ffffc7;
+}
+.medalReward{
+	display: inline-block;
+	width: 450px;
+	max-width: 450px;
+	vertical-align: top
 }
 .medalReqBullet{
 	margin-left: 30px;
 	display: list-item;
+}
+.reqPass{
+	color: green;
+}
+.reqUnlocked{
+	background-color: #dbefdb;
 }
 .medalRewardBullet{
 	margin-left: 50px;
@@ -41,10 +69,24 @@
 .reqOr{
 	font-weight: bold;
 }
+.medalIconState{
+	display: inline-block;
+	width: 22px;
+	vertical-align: middle;
+	margin-right: 4px;
+}
+.infoPanel{
+}
+.infoPanelHeader{
+	font-size: 18px;
+    margin-top: 8px;
+    font-weight: bold;
+}
   </style>
 </head>
 
 <body>
+  Bank <input type="file" id="fileInput" />
   <h1>TRD medals</h1>
   <script src="script.js?v=1"></script>
 </body>
