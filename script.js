@@ -733,7 +733,11 @@ function initMedals(){
 }
 
 function renderInfoPanel(){
-	let gInfoPanel = utilCreateDiv(document.body, '', 'infoPanel');
+	if(gInfoPanel){
+		gInfoPanel.innerHTML = '';
+		gInfoPanel.parentNode.removeChild(gInfoPanel);
+	}
+	gInfoPanel = utilCreateDiv(document.body, '', 'infoPanel');
 	
 	if(!gBank.PlayerRank) return;
 	
