@@ -213,6 +213,10 @@ function initBtns(){
 		let d = document.getElementById('bankHow').style.display;
 		document.getElementById('bankHow').style.display = (d=='none' ? 'block' : 'none')
 	});
+	document.getElementById('whatIsXp').addEventListener('click', ()=> {
+		let d = document.getElementById('serviceXp').style.display;
+		document.getElementById('serviceXp').style.display = (d=='none' ? 'block' : 'none')
+	});
 	
 	document.getElementById('fileInput').addEventListener('change', onFileInput);
 	
@@ -234,6 +238,8 @@ function initBtns(){
 	});
 }
 function initMedals(){
+	// gMedalsExp[ServiceXp, BattleXp, TacticalXp]
+	// all refer to 3rd index - in form of ServiceXp[2]
 	gMedalsExp[2] = [200]
 	gMedalsExp[3] = [225]
 	gMedalsExp[4] = [250]
@@ -886,6 +892,18 @@ function render(){
 //		if(gMedalsExp[i] !== undefined){
 //			let reqDiv = utilCreateDiv(medalReq, '', 'medalReqBullet');
 //		}
+
+		if(gMedalsExp[i] && (gMedalsExp[i][0] || gMedalsExp[i][1] || gMedalsExp[i][2])){
+			let ServiceXp2 = gMedalsExp[i][0];
+			let BattleXp2 = gMedalsExp[i][1];
+			let TacticalXp2 = gMedalsExp[i][2];
+			let ServiceXp = Math.ceil(ServiceXp2*8.75)
+			let TacticalXp = TacticalXp2*10;
+			let BattleXp = BattleXp2*5;
+			if(ServiceXp) utilCreateDiv(medalReq, 'Required ServiceXp: '+ServiceXp, 'medalReqBullet');
+			if(TacticalXp) utilCreateDiv(medalReq, 'Required TacticalXp: '+TacticalXp, 'medalReqBullet');
+			if(BattleXp) utilCreateDiv(medalReq, 'Required BattleXp: '+BattleXp, 'medalReqBullet');
+		}
 		
 		if(medal.req){
 			let unlocked = false;

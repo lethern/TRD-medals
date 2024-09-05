@@ -8,6 +8,7 @@
   <!-- <link rel="stylesheet" href="styles.css"> -->
   <style>
 body{
+	background-color: #f6f6f6;
 }
 .groupHeader {
 	font-size: 24px;
@@ -103,12 +104,20 @@ body{
 	box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
 	background: linear-gradient(135deg, rgb(150 185 236) 0%, rgb(106 141 192) 100%);
 }
+#whatIsXp{
+	background: linear-gradient(135deg, rgb(222 215 251) 0%, rgb(152 139 203) 100%);
+}
 #bankHow{
 	margin-top: 4px;
 }
 .bankHowContent{
 	padding: 3px 6px;
 	background-color: #d7e9fb;
+	display: inline-block;
+}
+.serviceXpContent{
+	padding: 3px 6px;
+	background-color: #ded7fb;
 	display: inline-block;
 }
 .tabs{
@@ -122,6 +131,12 @@ body{
 	border-bottom: 1px solid black;
 	display: inline-block;
 	cursor: pointer;
+}
+#medalsBtn{
+	border: 1px solid #357df4;
+}
+#statsBtn{
+	border: 1px solid #ffbe53;
 }
 #medalsBtn.highlightTab{
 	-webkit-box-shadow: inset 0px 0px 22px 5px rgba(114 147 203);
@@ -140,6 +155,7 @@ body{
   </div>
   <div class='topBtns'>
 	<div id='whereBankBtn' class='topBtn'>Where is Bank?</div>
+	<div id='whatIsXp' class='topBtn'>What is ServiceXp?</div>
   </div>
   <div id='bankHow' style='display: none;'>
 	<div class='bankHowContent'>
@@ -151,6 +167,15 @@ body{
 		<div>the bank file is <span style='background-color: #dbefdb'>Bank1.SC2Bank</span></div>
 	</div>
   </div>
+  <div id='serviceXp' style='display: none;'>
+	<div class='serviceXpContent'>
+	  Every game, we start with 0 BattleXp, ServiceXp and TacticalXp. <br />We gain them usually by being active, the most probably by being the leader. Estimates:<br /><br />
+	  ServiceXp: in general, using abilities<br />
+	  TacticalXp: again various actions, like searching cars or Bella' bones<br />
+	  BattleXp: 1 each time we shoot, 3 each time we kill something<br />
+	</div>
+  </div>
+  
   <h2>TRD medals (version 3)</h1>
   <div><div class='tabs'>
 	<div id='medalsBtn' class='tab highlightTab' style='background-color: #e7f0ff'>Medals</div>
