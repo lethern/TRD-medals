@@ -25,6 +25,7 @@ let gBank = {};
 init();
 render();
 
+
 function bankParser(content){
 	const parser = new DOMParser();
 	const xmlDoc = parser.parseFromString(content, 'application/xml'); // text/xml
@@ -174,27 +175,6 @@ function GetMOCstring(i){
 	return '';
 }
 
-//function decodeBinarySum(sum) {
-//    let power = 0;
-//    let index = 0;
-//	let array = [];
-//
-//    while (sum > 0) {
-//        const coefficient = Math.pow(2, power);
-//
-//        if (sum & coefficient) {
-//            array[index] = 1;
-//            sum -= coefficient;
-//        }
-//
-//        power++;
-//        index++;
-//    }
-//
-//    return array;
-//}
-
-
 
 function onFileInput(event){
 	const file = event.target.files[0];
@@ -206,8 +186,12 @@ function onFileInput(event){
 }
 
 function init(){
+	initBtns();
 	initMedals();
-	document.getElementById('fileInput').addEventListener('change', onFileInput);
+	
+	gInfoPanel = utilCreateDiv(document.body, '', 'infoPanel');
+	gInfoPanel.style.display = 'none';
+	gContentDiv = utilCreateDiv(document.body, '', 'medalsPanel');
 }
 
 function numberToClass(i){
@@ -224,6 +208,31 @@ function numberToClass(i){
 	}
 }
 
+function initBtns(){
+	document.getElementById('whereBankBtn').addEventListener('click', ()=> {
+		let d = document.getElementById('bankHow').style.display;
+		document.getElementById('bankHow').style.display = (d=='none' ? 'block' : 'none')
+	});
+	
+	document.getElementById('fileInput').addEventListener('change', onFileInput);
+	
+	document.getElementById('medalsBtn').addEventListener('click', ()=> {
+		let btn = document.getElementById('medalsBtn');
+		if(btn.classList.contains('highlightTab')) return;
+		btn.classList.add('highlightTab');
+		document.getElementById('statsBtn').classList.remove('highlightTab');
+		gInfoPanel.style.display = 'none';
+		gContentDiv.style.display = 'block';
+	});
+	document.getElementById('statsBtn').addEventListener('click', ()=> {
+		let btn = document.getElementById('statsBtn');
+		if(btn.classList.contains('highlightTab')) return;
+		btn.classList.add('highlightTab');
+		document.getElementById('medalsBtn').classList.remove('highlightTab');
+		gInfoPanel.style.display = 'block';
+		gContentDiv.style.display = 'none';
+	});
+}
 function initMedals(){
 	gMedalsExp[2] = [200]
 	gMedalsExp[3] = [225]
@@ -710,10 +719,29 @@ function initMedals(){
 				} },				], // (Special[8]==3 || special[13]==5)
 		reward: "-25% cooldown for most skills",
 	};
+	
+	gMedals[45] = {
+		name: "Able-Bodied Soldier",
+		req: [	{ text: "Evac GNM", func: ()=>{return gBank.SuccesfulEvacXX[4];} }, ],
+		reward: "+25 health\n"+"+15 energy\n"+"+10% attack speed\n"+"+2.5 seconds duration of Morphine\n"+"+50% attack speed bonus of Morphine\n"+"+5% move speed\n"+"+10% attack damage\n"+"+0.5 splash damage radius ",
+		order: 52,
+	};
+	gMedals[46] = {
+		name: "Inferno",
+		req: [	{ text: "Evac Inferno", func: ()=>{return gBank.InfernoC;} }, ],
+		reward: "+1 line of sight\n"+"+0.09 Energy regen\n"+"-5% ability cooldown",
+		order: 53,
+	};
+	gMedals[47] = {
+		name: "1 Man Run",
+		req: [	{ text: "Evac 1 man", func: ()=>{return gBank['1man']>=16;} }, ],
+		reward: "Custom skin color",
+		order: 54,
+	};
 //	gMedals[45] = {
 //		name: "National Defense Service Medal",
 //	};
-	gMaxMedal=44;
+	gMaxMedal=47;
 	
 	for(let i=2; i<=gMaxMedal; ++i) gMedals[i].index = i;
 	
@@ -728,18 +756,18 @@ function initMedals(){
 	for(let i=32; i<=44; ++i) gMedals[i].group = "Valors";
 	for(let i=33; i<=38; ++i) gMedals[i].group = "Silver Valors";
 	for(let i=39; i<=44; ++i) gMedals[i].group = "Gold Valors";
+	for(let i=45; i<=47; ++i) gMedals[i].group = "Additional Medals";
 	// order
 	for(let i=0; i<=gMaxMedal; ++i) if(gMedals[i] && !gMedals[i].order) gMedals[i].order = i;
 }
 
 function renderInfoPanel(){
-	if(gInfoPanel){
-		gInfoPanel.innerHTML = '';
-		gInfoPanel.parentNode.removeChild(gInfoPanel);
-	}
-	gInfoPanel = utilCreateDiv(document.body, '', 'infoPanel');
+	gInfoPanel.innerHTML = '';
 	
-	if(!gBank.PlayerRank) return;
+	if(!gBank.PlayerRank) {
+		gInfoPanel.textContent = 'First, Load Bank'
+		return;
+	}
 	
 	utilCreateDiv(gInfoPanel, 'PlayerRank: '+rankToString(gBank.PlayerRank));
 	utilCreateDiv(gInfoPanel, 'PlayerXP: '+gBank.PlayerXP);
@@ -829,14 +857,9 @@ function rankExp(i){
 
 function render(){
 	renderInfoPanel();
-	if(gContentDiv){
-		gContentDiv.innerHTML = '';
-		gContentDiv.parentNode.removeChild(gContentDiv);
-	}
-	let div = document.createElement('div');
-	gContentDiv = div;
-	document.body.appendChild(div);
+	gContentDiv.innerHTML = '';
 	
+	let div = gContentDiv;
 	let groups = [];
 	let sorted = [...gMedals].sort( (a, b) => a.order - b.order);
 	
