@@ -217,6 +217,10 @@ function initBtns(){
 		let d = document.getElementById('serviceXp').style.display;
 		document.getElementById('serviceXp').style.display = (d=='none' ? 'block' : 'none')
 	});
+	document.getElementById('legendBtn').addEventListener('click', ()=> {
+		let d = document.getElementById('legend').style.display;
+		document.getElementById('legend').style.display = (d=='none' ? 'block' : 'none')
+	});
 	
 	document.getElementById('fileInput').addEventListener('change', onFileInput);
 	
@@ -376,7 +380,7 @@ function initMedals(){
 		name: "Critical Cross",
 		req: [	{ text: "Lead surv", func: ()=>{ return gBank.SuccesfulEvacXX[2] >=1; } },  // SuccesfulEvacXX[2] >= 1
 			{ text: "Lead NM", func: ()=>{return gBank.SuccesfulEvacXX[2] >=2;} },  // SuccesfulEvacXX[2] >= 2
-			{ text: "Lead GNM", func: ()=>{return gBank.SuccesfulEvacXX[2] >=3;} }, ], // SuccesfulEvacXX[2] >= 3 (all: >=4)
+			{ text: "Lead G", func: ()=>{return gBank.SuccesfulEvacXX[2] >=3;} }, ], // SuccesfulEvacXX[2] >= 3 (all: >=4)
 		reward: "+1 armor-aura as Leader",
 	};
 	gMedals[20] = {
