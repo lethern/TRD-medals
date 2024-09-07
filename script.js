@@ -475,7 +475,8 @@ function initMedals(){
 				{ text: "Evac NM as all classes", func: (msgs)=>{
 					let missing = [];
 					for(let i=1; i<=9; ++i){
-						if(gBank.MOS2[i] < 4) missing.push(numberToClass(i))
+						// MOSadvancedCheck(1): MOS2[1..9] == 3, 5+ (NM all class)
+						if(gBank.MOS2[i] < 5 && gBank.MOS2[i] != 3) missing.push(numberToClass(i))
 					}
 					if(missing.length){
 						msgs.push('Missing NM evac as: '+missing.join(', '));
