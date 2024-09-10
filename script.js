@@ -745,7 +745,7 @@ function initMedals(){
 	};
 	gMedals[47] = {
 		name: "1 Man Run",
-		req: [	{ text: "Evac 1 man", func: ()=>{return gBank['1man']>=16;} }, ],
+		req: [	{ text: "Evac 1 man", func: ()=>{return gBank['1man']>=500;} }, ],
 		reward: "Custom skin color",
 		order: 54,
 	};
