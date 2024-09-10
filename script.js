@@ -146,7 +146,7 @@ function bankUnpack(bank){
 		gBank.Special[i] = gBank.Special[10][i-11];
 	}
 	
-	gBank['1man'] = sections['1man'];
+	gBank['1man'] = sections.Stats['1man'];
 	gBank.InfernoC = sections.Stats.Inferno;
 	
 	gBank.MOC = [];
@@ -494,8 +494,8 @@ function initMedals(){
 				{ text: "Has @medal 19@ ", func: ()=>{return gBank.PlayerMedals[19];} }, 
 				{ text: "Lead Vet NM", func: (msgs)=>{return gBank.VetLead == 4 || gBank.VetLead == 11; } }, // VetLead == 11,  VetValidator == 49, Game.LeadVetVal == true
 				{ text: "Lead Vet GNM", func: ()=>{return gBank.VetLead == 5 || gBank.VetLead == 11; } }, ], 
-		reward: "All class gains benefits from Able-Bodied\n"+"- Class Commander Aura: 14 range\n"+"- Demolition: +20% explosion skill damage\n"+"- Engineer: +0.1 energy regeneration\n"+"- Firebat: -15% gain damage\n"+"- Grunt: +10% weapon damage\n"+"- Heavy Support: +10% weapon speed\n"+"- Marksman: +1 weapon range\n"+"- Medic: +1 heath regeneration\n"+"- Reconnaissance: +0.05 movement speed\n"+"- Radio Operator: +2 line of sight",
-		order: 50
+		reward: "All class gains benefits from Able-Bodied\n"+"- Class Commander Aura: 14 range\n"+"- Demolition: +20% explosion skill damage\n"+"- Engineer: +0.1 energy regeneration\n"+"- Firebat: -15% gain damage\n"+"- Grunt: +10% weapon damage\n"+"- Heavy Support: +10% weapon speed\n"+"- Marksman: +1 weapon range\n"+"- Medic: +1 heath regeneration\n"+"- Reconnaissance: +0.05 movement speed\n"+"- Radio Operator: +2 line of sight\n"//+"alternative skin, triggered with -alt"
+		,order: 50
 	};
 	gMedals[30] = {
 		name: "Oak Leaf Cluster - Platin Star",
@@ -898,6 +898,17 @@ function render(){
 //			let reqDiv = utilCreateDiv(medalReq, '', 'medalReqBullet');
 //		}
 
+		let unlocked = false;
+		let add_css_unlocked = '';
+		if(gBank.PlayerRank){
+			unlocked = isMedalUnlocked(i);
+			add_css_unlocked = ' reqPass'
+		}
+		
+		if(unlocked){
+			medalReq.classList.add('reqUnlocked');
+		}
+
 		if(gMedalsExp[i] && (gMedalsExp[i][0] || gMedalsExp[i][1] || gMedalsExp[i][2])){
 			let ServiceXp2 = gMedalsExp[i][0];
 			let BattleXp2 = gMedalsExp[i][1];
@@ -905,19 +916,13 @@ function render(){
 			let ServiceXp = Math.ceil(ServiceXp2*8.75)
 			let TacticalXp = TacticalXp2*10;
 			let BattleXp = BattleXp2*5;
-			if(ServiceXp) utilCreateDiv(medalReq, 'Required ServiceXp: '+ServiceXp, 'medalReqBullet');
-			if(TacticalXp) utilCreateDiv(medalReq, 'Required TacticalXp: '+TacticalXp, 'medalReqBullet');
-			if(BattleXp) utilCreateDiv(medalReq, 'Required BattleXp: '+BattleXp, 'medalReqBullet');
+			if(ServiceXp) utilCreateDiv(medalReq, 'Required ServiceXp: '+ServiceXp, 'medalReqBullet'+add_css_unlocked);
+			if(TacticalXp) utilCreateDiv(medalReq, 'Required TacticalXp: '+TacticalXp, 'medalReqBullet'+add_css_unlocked);
+			if(BattleXp) utilCreateDiv(medalReq, 'Required BattleXp: '+BattleXp, 'medalReqBullet'+add_css_unlocked);
 		}
 		
 		if(medal.req){
-			let unlocked = false;
-			if(gBank.PlayerRank){
-				unlocked = isMedalUnlocked(i);
-			}
-			if(unlocked){
-				medalReq.classList.add('reqUnlocked');
-			}
+			
 					
 			for(let req of medal.req){
 				let reqDiv;
@@ -928,10 +933,9 @@ function render(){
 				
 				
 				if(req.func && gBank.PlayerRank){
-					let unlocked = isMedalUnlocked(i);
 					let msgs = [];
 					let pass = req.func(msgs);
-					if(pass && reqDiv) reqDiv.classList.add('reqPass');
+					if((unlocked || pass) && reqDiv) reqDiv.classList.add('reqPass');
 					if(msgs.length){
 						msgs.forEach(m=>{
 							utilCreateDiv(medalProgress, m, 'medalReqBullet');
@@ -955,11 +959,16 @@ function render(){
 }
 
 function isMedalUnlocked(i){
+	
 	if(i <= 24){
 		return gBank.PlayerMedals[i];
 	}
-	if(i > 24){
+	if(i > 24 && i < 45){
 		return gBank.PlayerMedalsXX[i-24];
+	}
+	if(i>=45 && i <= 47){
+		// fix for Able-body, inferno, 1man
+		return gMedals[i].req[0].func();
 	}
 }
 function renderMedalState(i, medal){
@@ -1069,21 +1078,30 @@ function utilCreateDiv(parent, text, css){
 	let element = document.createElement('div');
 	parent.appendChild(element);
 	element.textContent = text;
-	if(css) element.classList.add(css);
+	if(css){
+		let arr = css.split(' ');
+		arr.forEach(c => element.classList.add(c));
+	}
 	return element;
 }
 function utilCreateSpan(parent, text, css){
 	let element = document.createElement('span');
 	parent.appendChild(element);
 	element.textContent = text;
-	if(css) element.classList.add(css);
+	if(css){
+		let arr = css.split(' ');
+		arr.forEach(c => element.classList.add(c));
+	}
 	return element;
 }
 function utilCreateBtn(parent, callback, css){
 	let element = document.createElement('div');
 	parent.appendChild(element);
 	element.textContent = '(+)';
-	if(css) element.classList.add(css);
+	if(css){
+		let arr = css.split(' ');
+		arr.forEach(c => element.classList.add(c));
+	}
 	element.addEventListener('click', callback, false);
 	return element;
 }
@@ -1091,6 +1109,9 @@ function utilCreateIcon(parent, src, css){
 	let element = document.createElement('img');
 	if(parent) parent.appendChild(element);
 	element.src = src;
-	if(css) element.classList.add(css);
+	if(css){
+		let arr = css.split(' ');
+		arr.forEach(c => element.classList.add(c));
+	}
 	return element;
 }
