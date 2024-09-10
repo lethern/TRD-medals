@@ -52,18 +52,11 @@ function bankParser(content){
 					let attributeName = valueElement.attributes[0].name;
 					let attributeValue = valueElement.getAttribute(attributeName);
 					keys[keyName] = isNaN(attributeValue) ? attributeValue : parseInt(attributeValue, 10);
-					
-//					console.log(keyName +' => '+ keys[keyName]);
 				});
 
 				bankData.sections[name] = keys;
 			});
 
-			//for(let section in bankData.sections){
-			//	console.log(section);
-			//	console.log('  ', JSON.stringify(Object.keys(bankData.sections[section])));
-			//	//console.log('  ', bankData.sections[section].keys);
-			//}
 			bankUnpack(bankData);
 			render();
 			//document.getElementById('fileContent').textContent = JSON.stringify(bankData, null, 2);
@@ -893,20 +886,16 @@ function render(){
 		let medalReq = utilCreateDiv(content, '', 'medalReq');
 		let medalProgress = utilCreateDiv(content, '', 'medalProgress');
 		
-		
-//		if(gMedalsExp[i] !== undefined){
-//			let reqDiv = utilCreateDiv(medalReq, '', 'medalReqBullet');
-//		}
 
 		let unlocked = false;
 		let add_css_unlocked = '';
 		if(gBank.PlayerRank){
 			unlocked = isMedalUnlocked(i);
-			add_css_unlocked = ' reqPass'
 		}
 		
 		if(unlocked){
 			medalReq.classList.add('reqUnlocked');
+			add_css_unlocked = ' reqPass'
 		}
 
 		if(gMedalsExp[i] && (gMedalsExp[i][0] || gMedalsExp[i][1] || gMedalsExp[i][2])){
@@ -922,8 +911,6 @@ function render(){
 		}
 		
 		if(medal.req){
-			
-					
 			for(let req of medal.req){
 				let reqDiv;
 				if(req.text){
@@ -959,7 +946,6 @@ function render(){
 }
 
 function isMedalUnlocked(i){
-	
 	if(i <= 24){
 		return gBank.PlayerMedals[i];
 	}
@@ -971,6 +957,7 @@ function isMedalUnlocked(i){
 		return gMedals[i].req[0].func();
 	}
 }
+
 function renderMedalState(i, medal){
 	let unlocked = isMedalUnlocked(i);
 	let icon;
@@ -995,10 +982,7 @@ function reqTextBuilder(div, text){
 		if(found == '@medal') {
 			let index2 = text.indexOf('@', index+1);
 			let value = text.substring(index + "@medal ".length, index2)
-			
-			//utilCreateSpan(div, text.substring(0, index));
-			//utilCreateSpan(div, gMedals[value]?.shortname + (gMedals[value]?.shortname? ': ' : '') + gMedals[value]?.name || "Unknown medal", 'medalReqHighlight');
-			//utilCreateSpan(div, text.substring(index2+1));
+
 			let name =  (gMedals[value]?.shortname? gMedals[value]?.shortname +': ' : '') + gMedals[value]?.name || "Unknown medal"
 			let nameText = "</span><span class='medalReqHighlight'>"
 				+ name+"</span><span>"
@@ -1035,20 +1019,6 @@ function findOneOfArray(str, args, startIndex) {
 	return index == str.length ? { index: -1 } : { index, found};
 }
 
-function btnMedalExpand(medal_i){
-	let medal = gMedals[medal_i];
-	medal.reqExpanded = !medal.reqExpanded;
-	if(medal.reqExpanded){
-		medal.medalReqDiv.style.display = 'block';
-	}else{
-		medal.medalReqDiv.style.display = 'none';
-	}
-}
-
-function checkReqs(reqNr, errors){
-	let xp_check = checkReqXp(reqNr, errors);
-	
-}
 function checkReqs(reqNr, userWarnings){
 	let ok = true;
 	if(reqNr <= 24){
