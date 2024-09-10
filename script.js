@@ -734,7 +734,7 @@ function initMedals(){
 	gMedals[45] = {
 		name: "Able-Bodied Soldier",
 		req: [	{ text: "Evac GNM", func: ()=>{return gBank.SuccesfulEvacXX[4];} }, ],
-		reward: "+25 health\n"+"+15 energy\n"+"+10% attack speed\n"+"+2.5 seconds duration of Morphine\n"+"+50% attack speed bonus of Morphine\n"+"+5% move speed\n"+"+10% attack damage\n"+"+0.5 splash damage radius ",
+		reward: "Able-Bodied grunt\n"+"+25 health\n"+"+15 energy\n"+"+10% attack speed\n"+"+2.5 seconds duration of Morphine\n"+"+50% attack speed bonus of Morphine\n"+"+5% move speed\n"+"+10% attack damage\n"+"+0.5 splash damage radius ",
 		order: 52,
 	};
 	gMedals[46] = {
