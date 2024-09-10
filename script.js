@@ -494,8 +494,8 @@ function initMedals(){
 				{ text: "Has @medal 19@ ", func: ()=>{return gBank.PlayerMedals[19];} }, 
 				{ text: "Lead Vet NM", func: (msgs)=>{return gBank.VetLead == 4 || gBank.VetLead == 11; } }, // VetLead == 11,  VetValidator == 49, Game.LeadVetVal == true
 				{ text: "Lead Vet GNM", func: ()=>{return gBank.VetLead == 5 || gBank.VetLead == 11; } }, ], 
-		reward: "All class gains benefits from Able-Bodied\n"+"- Class Commander Aura: 14 range\n"+"- Demolition: +20% explosion skill damage\n"+"- Engineer: +0.1 energy regeneration\n"+"- Firebat: -15% gain damage\n"+"- Grunt: +10% weapon damage\n"+"- Heavy Support: +10% weapon speed\n"+"- Marksman: +1 weapon range\n"+"- Medic: +1 heath regeneration\n"+"- Reconnaissance: +0.05 movement speed\n"+"- Radio Operator: +2 line of sight\n"//+"alternative skin, triggered with -alt"
-		,order: 50
+		reward: "All class gains benefits from Able-Bodied\n"+"- Class Commander Aura: 14 range\n"+"- Demolition: +20% explosion skill damage\n"+"- Engineer: +0.1 energy regeneration\n"+"- Firebat: -15% gain damage\n"+"- Grunt: +10% weapon damage\n"+"- Heavy Support: +10% weapon speed\n"+"- Marksman: +1 weapon range\n"+"- Medic: +1 heath regeneration\n"+"- Reconnaissance: +0.05 movement speed\n"+"- Radio Operator: +2 line of sight\n"+"alternative skin, triggered with -alt",
+		order: 50
 	};
 	gMedals[30] = {
 		name: "Oak Leaf Cluster - Platin Star",
