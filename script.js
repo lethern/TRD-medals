@@ -3,6 +3,7 @@ let gMedals = [];
 let gMedalsExp = [];
 let gContentDiv;
 let gInfoPanel;
+let gMultiplyServiceXp = true;
 /*
 	name: string
 	group: string
@@ -234,11 +235,6 @@ function initBtns(){
 		gContentDiv.style.display = 'none';
 	});
 	
-	document.getElementById('hideServiceXp').addEventListener('change', function() {
-		let displayed = !this.checked;
-		let bullets = document.getElementsByClassName('medalServiceXpBullet');
-		Array.from(bullets).forEach((elem) => elem.style.display = displayed ? 'list-item' : 'none');
-	});
 	document.getElementById('hideOwned').addEventListener('change', function() {
 		let displayed = !this.checked;
 		let divs = document.getElementsByClassName('medalDivUnlocked');
@@ -248,6 +244,16 @@ function initBtns(){
 		let displayed = !this.checked;
 		let divs = document.getElementsByClassName('medalDivLocked');
 		Array.from(divs).forEach((elem) => elem.style.display = displayed ? 'block' : 'none');
+	});
+	document.getElementById('hideServiceXp').addEventListener('change', function() {
+		let displayed = !this.checked;
+		let bullets = document.getElementsByClassName('medalServiceXpBullet');
+		Array.from(bullets).forEach((elem) => elem.style.display = displayed ? 'list-item' : 'none');
+		document.getElementById('oldServiceXp').disabled = this.checked;
+	});
+	document.getElementById('oldServiceXp').addEventListener('change', function() {
+		gMultiplyServiceXp = !this.checked;
+		render();
 	});
 }
 function initMedals(){
@@ -925,9 +931,16 @@ function render(){
 			let ServiceXp2 = gMedalsExp[i][0];
 			let BattleXp2 = gMedalsExp[i][1];
 			let TacticalXp2 = gMedalsExp[i][2];
-			let ServiceXp = Math.ceil(ServiceXp2*8.75)
-			let TacticalXp = TacticalXp2*10;
-			let BattleXp = BattleXp2*5;
+			
+			let ServiceXp = ServiceXp2;
+			let TacticalXp = TacticalXp2;
+			let BattleXp = BattleXp2;
+			if(gMultiplyServiceXp){
+				ServiceXp = Math.ceil(ServiceXp2*8.75)
+				TacticalXp = TacticalXp2*10;
+				BattleXp = BattleXp2*5;	
+			}
+			
 			if(ServiceXp) utilCreateDiv(medalReq, 'Required ServiceXp: '+ServiceXp, 'medalServiceXpBullet'+add_css_unlocked);
 			if(TacticalXp) utilCreateDiv(medalReq, 'Required TacticalXp: '+TacticalXp, 'medalServiceXpBullet'+add_css_unlocked);
 			if(BattleXp) utilCreateDiv(medalReq, 'Required BattleXp: '+BattleXp, 'medalServiceXpBullet'+add_css_unlocked);
