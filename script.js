@@ -272,7 +272,7 @@ function initMedals(){
 	gMedalsExp[12] = [225,325]
 	gMedalsExp[13] = [250, 375]
 	gMedalsExp[14] = [300, 425]
-	gMedalsExp[15] = [350, 0, 175]
+	gMedalsExp[15] = [350, 525, 175]
 	gMedalsExp[16] = [0,0,100]
 	gMedalsExp[17] = [0,0,110]
 	gMedalsExp[18] = [0,0,120]
