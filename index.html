@@ -53,6 +53,10 @@ body{
 	margin-left: 30px;
 	display: list-item;
 }
+.medalServiceXpBullet{
+	margin-left: 30px;
+	display: list-item;
+}
 .reqPass{
 	color: green;
 }
@@ -89,10 +93,24 @@ body{
     margin-top: 8px;
     font-weight: bold;
 }
+.fileInputWrap{
+	display: inline-block;
+	vertical-align: top;
+}
 .topBtns{
 	display: inline-block;
 	margin-left: 50px;
+	-webkit-user-select: none;
+	user-select: none;
 }
+.topConfig{
+	display: inline-block;
+	margin-top: 10px;
+}
+.topConfig label{
+	margin-right: 10px;
+}
+
 .topBtn{
 	display: inline-block;
 	cursor: pointer;
@@ -159,14 +177,22 @@ body{
 </head>
 
 <body>
-  <div style='display: inline-block'>
+  <div class='fileInputWrap'>
 	Bank <input type="file" id="fileInput" />
   </div>
   <div class='topBtns'>
-	<div id='whereBankBtn' class='topBtn'>Where is Bank?</div>
-	<div id='whatIsXp' class='topBtn'>What is ServiceXp?</div>
-	<div id='legendBtn' class='topBtn'>Legend</div>
+    <div>
+	  <div id='whereBankBtn' class='topBtn'>Where is Bank?</div>
+	  <div id='whatIsXp' class='topBtn'>What is ServiceXp?</div>
+	  <div id='legendBtn' class='topBtn'>Legend</div>
+	</div>
+	<div class='topConfig'>
+      <input id="hideServiceXp" type="checkbox"/><label for="hideServiceXp">Hide ServiceXp</label>
+      <input id="hideOwned" type="checkbox"/><label for="hideOwned">Hide owned Medals</label>
+      <input id="hideMissing" type="checkbox"/><label for="hideMissing">Hide missing Medals</label>
+    </div>
   </div>
+  
   <div id='bankHow' style='display: none;'>
 	<div class='bankHowContent'>
 		<div>How to find Bank?</div>
@@ -205,7 +231,7 @@ body{
 	<div id='statsBtn' class='tab' style='background-color: #fff6e7'>Stats</div>
   </div></div>
   
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 
 </html>

@@ -233,6 +233,22 @@ function initBtns(){
 		gInfoPanel.style.display = 'block';
 		gContentDiv.style.display = 'none';
 	});
+	
+	document.getElementById('hideServiceXp').addEventListener('change', function() {
+		let displayed = !this.checked;
+		let bullets = document.getElementsByClassName('medalServiceXpBullet');
+		Array.from(bullets).forEach((elem) => elem.style.display = displayed ? 'list-item' : 'none');
+	});
+	document.getElementById('hideOwned').addEventListener('change', function() {
+		let displayed = !this.checked;
+		let divs = document.getElementsByClassName('medalDivUnlocked');
+		Array.from(divs).forEach((elem) => elem.style.display = displayed ? 'block' : 'none');
+	});
+	document.getElementById('hideMissing').addEventListener('change', function() {
+		let displayed = !this.checked;
+		let divs = document.getElementsByClassName('medalDivLocked');
+		Array.from(divs).forEach((elem) => elem.style.display = displayed ? 'block' : 'none');
+	});
 }
 function initMedals(){
 	// gMedalsExp[ServiceXp, BattleXp, TacticalXp]
@@ -260,6 +276,11 @@ function initMedals(){
 	gMedalsExp[22] = [0,0,150]
 	gMedalsExp[23] = [0,0,150]
 	gMedalsExp[24] = [0,0,100]
+	for(let i=2; i<=24; ++i){
+		if(!gMedalsExp[i][0]) gMedalsExp[i][0]= 40;
+		if(!gMedalsExp[i][1]) gMedalsExp[i][1]= 40;
+		if(!gMedalsExp[i][2]) gMedalsExp[i][2]= 40;
+	}
 
 
 	
@@ -861,6 +882,7 @@ function rankExp(i){
 
 function render(){
 	renderInfoPanel();
+	fixMenu();
 	gContentDiv.innerHTML = '';
 	
 	let div = gContentDiv;
@@ -891,6 +913,7 @@ function render(){
 		let add_css_unlocked = '';
 		if(gBank.PlayerRank){
 			unlocked = isMedalUnlocked(i);
+			medalDiv.classList.add(unlocked ? 'medalDivUnlocked' : 'medalDivLocked');
 		}
 		
 		if(unlocked){
@@ -905,9 +928,9 @@ function render(){
 			let ServiceXp = Math.ceil(ServiceXp2*8.75)
 			let TacticalXp = TacticalXp2*10;
 			let BattleXp = BattleXp2*5;
-			if(ServiceXp) utilCreateDiv(medalReq, 'Required ServiceXp: '+ServiceXp, 'medalReqBullet'+add_css_unlocked);
-			if(TacticalXp) utilCreateDiv(medalReq, 'Required TacticalXp: '+TacticalXp, 'medalReqBullet'+add_css_unlocked);
-			if(BattleXp) utilCreateDiv(medalReq, 'Required BattleXp: '+BattleXp, 'medalReqBullet'+add_css_unlocked);
+			if(ServiceXp) utilCreateDiv(medalReq, 'Required ServiceXp: '+ServiceXp, 'medalServiceXpBullet'+add_css_unlocked);
+			if(TacticalXp) utilCreateDiv(medalReq, 'Required TacticalXp: '+TacticalXp, 'medalServiceXpBullet'+add_css_unlocked);
+			if(BattleXp) utilCreateDiv(medalReq, 'Required BattleXp: '+BattleXp, 'medalServiceXpBullet'+add_css_unlocked);
 		}
 		
 		if(medal.req){
@@ -943,6 +966,14 @@ function render(){
 			renderMedalState(i, medal);
 		}
 	}
+}
+
+function fixMenu(){
+	let bankLoaded = !!gBank.PlayerRank;
+	let hideOwned = document.getElementById('hideOwned')
+	let hideMissing = document.getElementById('hideMissing')
+	hideOwned.disabled = !bankLoaded;
+	hideMissing.disabled = !bankLoaded;
 }
 
 function isMedalUnlocked(i){
