@@ -895,6 +895,8 @@ function render(){
 	let groups = [];
 	let sorted = [...gMedals].sort( (a, b) => a.order - b.order);
 	
+	let hideServiceXp = document.getElementById('hideServiceXp').checked;
+
 	for(let _i=0; _i<= gMaxMedal; ++_i){
 		let medal = sorted[_i];
 		if(!medal || !medal.name) continue;
@@ -941,9 +943,18 @@ function render(){
 				BattleXp = BattleXp2*5;	
 			}
 			
-			if(ServiceXp) utilCreateDiv(medalReq, 'Required ServiceXp: '+ServiceXp, 'medalServiceXpBullet'+add_css_unlocked);
-			if(TacticalXp) utilCreateDiv(medalReq, 'Required TacticalXp: '+TacticalXp, 'medalServiceXpBullet'+add_css_unlocked);
-			if(BattleXp) utilCreateDiv(medalReq, 'Required BattleXp: '+BattleXp, 'medalServiceXpBullet'+add_css_unlocked);
+			if(ServiceXp){
+				let elem = utilCreateDiv(medalReq, 'Required ServiceXp: '+ServiceXp, 'medalServiceXpBullet'+add_css_unlocked);
+				if(hideServiceXp) elem.style.display = 'none';
+			}
+			if(TacticalXp){
+				let elem = utilCreateDiv(medalReq, 'Required TacticalXp: '+TacticalXp, 'medalServiceXpBullet'+add_css_unlocked);
+				if(hideServiceXp) elem.style.display = 'none';
+			}
+			if(BattleXp){
+				let elem = utilCreateDiv(medalReq, 'Required BattleXp: '+BattleXp, 'medalServiceXpBullet'+add_css_unlocked);
+				if(hideServiceXp) elem.style.display = 'none';
+			}
 		}
 		
 		if(medal.req){
