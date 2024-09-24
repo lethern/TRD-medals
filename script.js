@@ -642,7 +642,7 @@ function initMedals(){
 				/**33*/
 				{ text: "Lead 3 man surv, 9 times", func: (msgs)=>{
 					if(gBank.Special[2] < 9){
-						msgs.push('3man surv lead: '+ gBank.Special[9] +' / 9');
+						msgs.push('3man surv lead: '+ gBank.Special[2] +' / 9');
 					}
 					return gBank.Special[2] == 9
 				} },
