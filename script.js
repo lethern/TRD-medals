@@ -603,7 +603,7 @@ function initMedals(){
 				{ text: "Lead NM all missions, 9 times - or - Evac NM Vet all mission", func: (msgs)=>{
 					if(!gBank.PlayerMedals[24]) return false;
 					if(gBank.Special[6] < 9 && gBank.Special[15]!=1){
-						msgs.push('Lead NM all missions: '+gBank.Special[5] +' / 9');
+						msgs.push('Lead NM all missions: '+gBank.Special[6] +' / 9');
 					}
 					return gBank.Special[6] == 9 || gBank.Special[15]==1;
 				} }, ], // (Special[6]==9 || special[15]==1)
@@ -709,7 +709,7 @@ function initMedals(){
 				/**36*/
 				{ text: "Lead NM all missions, 9 times", func: (msgs)=>{
 					if(gBank.Special[6] < 9 ){
-						msgs.push('Lead NM all missions: '+gBank.Special[5] +' / 9');
+						msgs.push('Lead NM all missions: '+gBank.Special[6] +' / 9');
 					}
 					return gBank.Special[6] == 9 ;
 				} },
