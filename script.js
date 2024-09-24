@@ -421,13 +421,13 @@ function initMedals(){
 				{ text: "Evac surv all 2nd evacs", func: ()=>{
 					if(gBank.SuccesfulEvacXX[3] < 7){
 						switch(gBank.SuccesfulEvacXX[3]){
-							case 1: msgs.push('Missing Heli, Boat');
-							case 2: msgs.push('Missing Train, Boat');
-							case 3: msgs.push('Missing Train, Heli');
-							case 4: msgs.push('Missing Boat');
-							case 5: msgs.push('Missing Heli');
-							case 6: msgs.push('Missing Train');
-							default: msgs.push('Missing Train, Boat, Heli');
+							case 1: msgs.push('Missing Heli, Boat'); break;
+							case 2: msgs.push('Missing Train, Boat'); break;
+							case 3: msgs.push('Missing Train, Heli'); break;
+							case 4: msgs.push('Missing Boat'); break;
+							case 5: msgs.push('Missing Heli'); break;
+							case 6: msgs.push('Missing Train'); break;
+							default: msgs.push('Missing Train, Boat, Heli'); break;
 						}
 					}
 					return gBank.SuccesfulEvacXX[3] >= 7
@@ -561,22 +561,22 @@ function initMedals(){
 					if(!gBank.PlayerMedals[22]) return false;
 					if(gBank.Special[3] < 7 && gBank.Special[4] < 7){
 						switch(gBank.Special[3]){
-							case 1: msgs.push('Lead surv missing Heli, Boat');
-							case 2: msgs.push('Lead surv missing Train, Boat');
-							case 3: msgs.push('Lead surv missing Train, Heli');
-							case 4: msgs.push('Lead surv missing Boat');
-							case 5: msgs.push('Lead surv missing Heli');
-							case 6: msgs.push('Lead surv missing Train');
-							default:msgs.push('Lead surv missing Train, Boat, Heli');
+							case 1: msgs.push('Lead surv missing Heli, Boat'); break;
+							case 2: msgs.push('Lead surv missing Train, Boat'); break;
+							case 3: msgs.push('Lead surv missing Train, Heli'); break;
+							case 4: msgs.push('Lead surv missing Boat'); break;
+							case 5: msgs.push('Lead surv missing Heli'); break;
+							case 6: msgs.push('Lead surv missing Train'); break;
+							default:msgs.push('Lead surv missing Train, Boat, Heli'); break;
 						}
 						switch(gBank.Special[4]){
-							case 1: msgs.push('Lead NM missing Heli, Boat');
-							case 2: msgs.push('Lead NM missing Train, Boat');
-							case 3: msgs.push('Lead NM missing Train, Heli');
-							case 4: msgs.push('Lead NM missing Boat');
-							case 5: msgs.push('Lead NM missing Heli');
-							case 6: msgs.push('Lead NM missing Train');
-							default:msgs.push('Lead NM missing Train, Boat, Heli');
+							case 1: msgs.push('Lead NM missing Heli, Boat'); break;
+							case 2: msgs.push('Lead NM missing Train, Boat'); break;
+							case 3: msgs.push('Lead NM missing Train, Heli'); break;
+							case 4: msgs.push('Lead NM missing Boat'); break;
+							case 5: msgs.push('Lead NM missing Heli'); break;
+							case 6: msgs.push('Lead NM missing Train'); break;
+							default:msgs.push('Lead NM missing Train, Boat, Heli'); break;
 						}
 					}
 					return gBank.Special[3] == 7 || gBank.Special[4] == 7
@@ -659,13 +659,13 @@ function initMedals(){
 				{ text: "Lead surv all 2nd evacs", func: (msgs)=>{
 					if(gBank.Special[3] < 7){
 						switch(gBank.Special[3]){
-							case 1: msgs.push('Lead surv missing Heli, Boat');
-							case 2: msgs.push('Lead surv missing Train, Boat');
-							case 3: msgs.push('Lead surv missing Train, Heli');
-							case 4: msgs.push('Lead surv missing Boat');
-							case 5: msgs.push('Lead surv missing Heli');
-							case 6: msgs.push('Lead surv missing Train');
-							default:msgs.push('Lead surv missing Train, Boat, Heli');
+							case 1: msgs.push('Lead surv missing Heli, Boat'); break;
+							case 2: msgs.push('Lead surv missing Train, Boat'); break;
+							case 3: msgs.push('Lead surv missing Train, Heli'); break;
+							case 4: msgs.push('Lead surv missing Boat'); break;
+							case 5: msgs.push('Lead surv missing Heli'); break;
+							case 6: msgs.push('Lead surv missing Train'); break;
+							default:msgs.push('Lead surv missing Train, Boat, Heli'); break;
 						}
 					}
 					return gBank.Special[3] == 7
@@ -673,13 +673,13 @@ function initMedals(){
 				{ text: "Lead NM all 2nd evacs", func: (msgs)=>{
 					if(gBank.Special[4] < 7){
 						switch(gBank.Special[4]){
-							case 1: msgs.push('Lead NM missing Heli, Boat');
-							case 2: msgs.push('Lead NM missing Train, Boat');
-							case 3: msgs.push('Lead NM missing Train, Heli');
-							case 4: msgs.push('Lead NM missing Boat');
-							case 5: msgs.push('Lead NM missing Heli');
-							case 6: msgs.push('Lead NM missing Train');
-							default:msgs.push('Lead NM missing Train, Boat, Heli');
+							case 1: msgs.push('Lead NM missing Heli, Boat'); break;
+							case 2: msgs.push('Lead NM missing Train, Boat'); break;
+							case 3: msgs.push('Lead NM missing Train, Heli'); break;
+							case 4: msgs.push('Lead NM missing Boat'); break;
+							case 5: msgs.push('Lead NM missing Heli'); break;
+							case 6: msgs.push('Lead NM missing Train'); break;
+							default:msgs.push('Lead NM missing Train, Boat, Heli'); break;
 						}
 					}
 					return gBank.Special[4] == 7
