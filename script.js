@@ -133,11 +133,11 @@ function bankUnpack(bank){
 	gBank.Special = [];
 	gBank.Special[0] = sections['SignatureX'].vals+'';
 	for(let i=1; i<=9; ++i){
-		gBank.Special[i] = gBank.Special[0][i-1];
+		gBank.Special[i] = +gBank.Special[0][i-1];
 	}
 	gBank.Special[10] = sections['SignatureX'].valz+'';
 	for(let i=11; i<=15; ++i){
-		gBank.Special[i] = gBank.Special[10][i-11];
+		gBank.Special[i] = +gBank.Special[10][i-11];
 	}
 	
 	gBank['1man'] = sections.Stats['1man'];
