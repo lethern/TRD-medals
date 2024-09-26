@@ -155,6 +155,7 @@ function GetMOSXstring(i){
 	return GetMOCstring(i)+'X';
 }
 function GetMOCstring(i){
+	i = +i;
 	switch(i){
 		case 1: return "Demo";
 		case 2: return "Engi";
@@ -189,6 +190,7 @@ function init(){
 }
 
 function numberToClass(i){
+	i = +i;
 	switch(i){
 		case 1: return 'Demo'
 		case 2: return 'Engi'
@@ -420,7 +422,8 @@ function initMedals(){
 		req: [	{ text: "Has @medal 13@ ", func: (msgs)=>{ return gBank.PlayerMedals[13]} }, // PlayerMedals[13] = true
 				{ text: "Evac surv all 2nd evacs", func: ()=>{
 					if(gBank.SuccesfulEvacXX[3] < 7){
-						switch(gBank.SuccesfulEvacXX[3]){
+						let no = +gBank.SuccesfulEvacXX[3];
+						switch(no){
 							case 1: msgs.push('Missing Heli, Boat'); break;
 							case 2: msgs.push('Missing Train, Boat'); break;
 							case 3: msgs.push('Missing Train, Heli'); break;
@@ -842,6 +845,7 @@ function renderInfoPanel(){
 	utilCreateDiv(gInfoPanel, 'Inferno: '+ (gBank.InfernoC?'Yes':'No') );
 }
 function print2ndEvac(e){
+	e = +e;
 	switch(e){
 		case 1: return 'Train';
 		case 2: return 'Heli';
@@ -854,6 +858,7 @@ function print2ndEvac(e){
 	}
 }
 function printVetLead(v){
+	v = +v;
 	switch(v){
 		case 4: return 'NM';
 		case 5: return 'GNM';
@@ -862,6 +867,7 @@ function printVetLead(v){
 	}
 }
 function MOSspecialConvert(i){
+	i = +i;
 	switch(i){
 		case 1: return 'None';
 		case 2: return 'None';
