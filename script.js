@@ -420,7 +420,7 @@ function initMedals(){
 		name: "Defense Distinguished Service Medal - Bronze V",
 		shortname: "V2",
 		req: [	{ text: "Has @medal 13@ ", func: (msgs)=>{ return gBank.PlayerMedals[13]} }, // PlayerMedals[13] = true
-				{ text: "Evac surv all 2nd evacs", func: ()=>{
+				{ text: "Evac surv all 2nd evacs", func: (msgs)=>{
 					if(gBank.SuccesfulEvacXX[3] < 7){
 						let no = +gBank.SuccesfulEvacXX[3];
 						switch(no){
