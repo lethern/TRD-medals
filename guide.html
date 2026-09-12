@@ -21,7 +21,7 @@
 		--border-color: #333333;
 		--link-color: #66b2ff;
 		--toc-muted: #666666;
-		--header-border: #2c2c2c;
+		--header-border: #5a5a5a;
 	}
 }
 
@@ -31,7 +31,7 @@
 	--border-color: #333333;
 	--link-color: #66b2ff;
 	--toc-muted: #666666;
-	--header-border: #2c2c2c;
+	--header-border: #5a5a5a;
 }
 
 :root.light-mode {
@@ -69,18 +69,25 @@ body {
 
 #preview-content h1 {
 	font-size: 2em;
-	margin-bottom: 20px;
-	border-bottom: 1px solid var(--header-border);
+	margin-bottom: 12px;
 }
 
 #preview-content h2 {
 	font-size: 1.6em;
-	margin: 30px 0 15px;
+	margin: 25px 0 12px;
 }
 
 #preview-content h3 {
 	font-size: 1.3em;
-	margin: 25px 0 10px;
+	margin: 18px 0 8px;
+}
+
+#preview-content h4 {
+	margin: 15px 0 6px;
+}
+
+#preview-content h5 {
+	margin: 12px 0 4px;
 }
 
 #preview-content p {
@@ -276,6 +283,19 @@ body {
 	color: var(--text-color);
 }
 
+.collapsible-header::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 2px solid var(--header-border);
+}
+h1.collapsible-header::after { top: -25px; }
+h2.collapsible-header::after { top: -25px; }
+h3.collapsible-header::after { position: unset; }
+h4.collapsible-header::after { position: unset; }
+h5.collapsible-header::after { position: unset; }
+
 .collapsed::before {
 	transform: rotate(-90deg);
 	color: var(--link-color);
@@ -334,6 +354,9 @@ body {
 	#preview-content h6 {
 		scroll-margin-top: 80px;
 	}
+}
+.collapsible-header b {
+    border-bottom: 1px solid var(--header-border);
 }
 </style>
 </head>
