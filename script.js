@@ -49,6 +49,10 @@ function bankParser(content){
 				Array.from(section.getElementsByTagName('Key')).forEach(key => {
 					let keyName = key.getAttribute('name');
 					let valueElement = key.getElementsByTagName('Value')[0];
+					if(!valueElement || !valueElement.attributes){
+						console.error(`empty attribute, name ${keyName} `, key.getElementsByTagName('Value')[0]);
+						return;
+					}
 					
 					let attributeName = valueElement.attributes[0].name;
 					let attributeValue = valueElement.getAttribute(attributeName);
