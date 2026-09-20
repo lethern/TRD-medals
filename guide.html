@@ -5,6 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exported Guide</title>
 <style>
+.top{
+	display: flex;
+	align-items: center; 
+	flex-direction: column;
+	padding-bottom: 10px;
+}
+.toptitle{
+	font-family: Georgia, 'Times New Roman', serif;
+	font-weight: 400;
+	letter-spacing: 0.15em;
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+	font-size: 1.6em;
+}
+.toptitle2{
+	font-size: 1.3em;
+}
+:root.dark-mode .toptitle {
+    color: white;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
+}
+
+:root.light-mode .toptitle {
+    color: black;
+    
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+</style>
+<style>
 :root {
 	--bg-color: #ffffff;
 	--text-color: #333333;
@@ -200,7 +228,7 @@ body {
 	padding-left: 0;
 }
 
-.toc-item > a {
+a {
 	text-decoration: none;
 	color: var(--link-color);
 }
@@ -364,6 +392,11 @@ h5.collapsible-header::after { position: unset; }
 <body>
 <div class="container">
 	<div id="preview-content"><div>
+	<div class="top">
+		<div class="toptitle">The Rising Dead</div>
+		<div class="toptitle2">Mrdude's guide</div>
+		<div><a href="https://discord.gg/pbbhqwB">join discord</a></div>
+	</div>
 	<div class="doc-section">
 		<h1 class="collapsible-header" id="sec-0">1. Tutorial & Basics</h1>
 		<div class="section-content par">
@@ -21911,11 +21944,16 @@ h5.collapsible-header::after { position: unset; }
 window.addEventListener('DOMContentLoaded', () => {
 	const themeBtn = document.getElementById('theme-toggle');
 	const root = document.documentElement;
-	const isDark = root.classList.contains('dark-mode')
-		|| (
-			window.matchMedia('(prefers-color-scheme: dark)').matches
-			&& !root.classList.contains('light-mode')
-		);
+
+	const isSystemDark =
+		window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+	const isDark =
+		root.classList.contains('dark-mode') ||
+		(!root.classList.contains('light-mode') && isSystemDark);
+
+	root.classList.toggle('dark-mode', isDark);
+	root.classList.toggle('light-mode', !isDark);
 
 	if (themeBtn) {
 		themeBtn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
